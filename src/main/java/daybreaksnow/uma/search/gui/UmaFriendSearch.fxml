@@ -5,9 +5,34 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-	
-<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="daybreaksnow.uma.search.gui.UmaFriendSearchController">
-    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
-	<Text text="hoge" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-	<Text text="piyo" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+
+<GridPane xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="daybreaksnow.uma.search.gui.UmaFriendSearchController">
+	<padding>
+		<Insets top="25" right="25" bottom="10" left="25" />
+	</padding>
+	<HBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+		<children>
+			<Text text="検索" />
+
+			<Text text="代表ウマ娘" />
+			<TextField fx:id="searchUmaNameText" />
+
+			<Text text="因子" />
+			<ListView fx:id="searchFactorCombo" />
+
+			<Text text="もっと見る回数" />
+			<TextField fx:id="nextNumText" />
+
+			<Button fx:id="searchUmaButton" onAction="#search" text="検索"
+				prefWidth="50" />
+		</children>
+	</HBox>
+	<HBox GridPane.columnIndex="0" GridPane.rowIndex="1">
+		<children>
+			<Text text="HTML" />
+			<TextArea fx:id="searchUmaResultTextArea" />
+		</children>
+	</HBox>
+
 </GridPane>
