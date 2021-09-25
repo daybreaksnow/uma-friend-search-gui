@@ -6,33 +6,67 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane xmlns:fx="http://javafx.com/fxml/1"
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="daybreaksnow.uma.search.gui.UmaFriendSearchController">
-	<padding>
-		<Insets top="25" right="25" bottom="10" left="25" />
-	</padding>
-	<HBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+	<VBox>
+		<padding>
+			<Insets top="25" right="25" bottom="10" left="25" />
+		</padding>
 		<children>
-			<Text text="検索" />
+			<HBox>
+				<children>
+					<Text text="検索" />
+				</children>
+			</HBox>
+			<HBox>
+				<padding>
+					<Insets top="10" right="10" bottom="10" left="10" />
+				</padding>
+				<children>
+					<Text text="代表ウマ娘" />
+					<TextField fx:id="searchUmaNameText" minWidth="150">
+						<HBox.margin>
+							<Insets top="0" right="10" bottom="0" />
+						</HBox.margin>
+					</TextField>
 
-			<Text text="代表ウマ娘" />
-			<TextField fx:id="searchUmaNameText" />
+					<Text text="青因子" />
+					<ListView fx:id="searchBlueFactorCombo" minHeight="120"
+						maxHeight="120" minWidth="80" maxWidth="80">
+						<HBox.margin>
+							<Insets top="0" right="10" bottom="0" />
+						</HBox.margin>
+					</ListView>
 
-			<Text text="因子" />
-			<ListView fx:id="searchFactorCombo" />
+					<Text text="赤因子" />
+					<ListView fx:id="searchRedFactorCombo" minHeight="145"
+						maxHeight="145" minWidth="80" maxWidth="80">
+						<HBox.margin>
+							<Insets top="0" right="10" bottom="0" />
+						</HBox.margin>
+					</ListView>
 
-			<Text text="もっと見る回数" />
-			<TextField fx:id="nextNumText" />
+					<Text text="もっと見る回数" />
+					<TextField fx:id="nextNumText" minWidth="30"
+						maxWidth="30">
+						<HBox.margin>
+							<Insets top="0" right="10" bottom="0" />
+						</HBox.margin>
+					</TextField>
 
-			<Button fx:id="searchUmaButton" onAction="#search" text="検索"
-				prefWidth="50" />
+					<Button fx:id="searchUmaButton" onAction="#search" text="検索"
+						minWidth="50" maxWidth="50" />
+				</children>
+			</HBox>
+			<HBox>
+				<padding>
+					<Insets top="10" right="10" bottom="10" left="10" />
+				</padding>
+				<children>
+					<Text text="HTML" />
+					<TextArea fx:id="searchUmaResultTextArea" maxHeight="45" />
+				</children>
+			</HBox>
 		</children>
-	</HBox>
-	<HBox GridPane.columnIndex="0" GridPane.rowIndex="1">
-		<children>
-			<Text text="HTML" />
-			<TextArea fx:id="searchUmaResultTextArea" />
-		</children>
-	</HBox>
-
-</GridPane>
+	</VBox>
+</ScrollPane>

@@ -1,6 +1,7 @@
 package daybreaksnow.uma.search.gui;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
@@ -10,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -29,7 +31,10 @@ public class UmaFriendSearchController implements Initializable {
 	private TextField searchUmaNameText;
 
 	@FXML
-	private ListView<String> searchFactorCombo;
+	private ListView<String> searchBlueFactorCombo;
+
+	@FXML
+	private ListView<String> searchRedFactorCombo;
 
 	@FXML
 	private TextField nextNumText;
@@ -42,17 +47,25 @@ public class UmaFriendSearchController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		ObservableList<String> searchFactors = FXCollections.observableArrayList("スピード", "パワー", "スタミナ", "根性", "賢さ", //
-				"短距離", "マイル", "中距離", "長距離", "芝", "ダート");
-		searchFactorCombo.setItems(searchFactors);
-		searchFactorCombo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		ObservableList<String> searchBlueFactors = FXCollections.observableArrayList("スピード", "パワー", "スタミナ", "根性", "賢さ");
+		ObservableList<String> searchRedFactors = FXCollections.observableArrayList("短距離", "マイル", "中距離", "長距離", "芝",
+				"ダート");
+		searchBlueFactorCombo.setItems(searchBlueFactors);
+		searchBlueFactorCombo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		searchRedFactorCombo.setItems(searchRedFactors);
+		searchRedFactorCombo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		nextNumText.setText("0");
+		nextNumText.setMinWidth(0);
+		nextNumText.setAlignment(Pos.CENTER_RIGHT);
+
 	}
 
 	@FXML
 	public void search(ActionEvent event) {
 		String umaName = getTextValue(searchUmaNameText.getText());
-		Collection<String> factors = searchFactorCombo.getSelectionModel().getSelectedItems();
+		Collection<String> factors = new ArrayList<>();
+		factors.addAll(searchBlueFactorCombo.getSelectionModel().getSelectedItems());
+		factors.addAll(searchRedFactorCombo.getSelectionModel().getSelectedItems());
 		String nextNumStr = getTextValue(nextNumText.getText());
 		int nextNum;
 		try {
