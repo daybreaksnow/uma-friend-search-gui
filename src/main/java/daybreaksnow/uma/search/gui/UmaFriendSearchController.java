@@ -26,6 +26,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
@@ -39,6 +40,7 @@ import javafx.stage.FileChooser;
  */
 public class UmaFriendSearchController implements Initializable {
 
+	// 検索部
 	@FXML
 	private TextField searchUmaNameText;
 
@@ -57,8 +59,134 @@ public class UmaFriendSearchController implements Initializable {
 	@FXML
 	private TextArea searchUmaResultTextArea;
 
+	//抽出部
+	// 合計部
+	//合計青因子
+	@FXML
+	private ComboBox<String> extractAllBlueFactorCombo1;
+
+	@FXML
+	private ComboBox<Integer> extractAllBlueFactorMinNumCombo1;
+
+	@FXML
+	private ComboBox<String> extractAllBlueFactorCombo2;
+
+	@FXML
+	private ComboBox<Integer> extractAllBlueFactorMinNumCombo2;
+
+	@FXML
+	private ComboBox<String> extractAllBlueFactorCombo3;
+
+	@FXML
+	private ComboBox<Integer> extractAllBlueFactorMinNumCombo3;
+
+	//合計赤因子
+	@FXML
+	private ComboBox<String> extractAllRedFactorCombo1;
+
+	@FXML
+	private ComboBox<Integer> extractAllRedFactorMinNumCombo1;
+
+	@FXML
+	private ComboBox<String> extractAllRedFactorCombo2;
+
+	@FXML
+	private ComboBox<Integer> extractAllRedFactorMinNumCombo2;
+
+	@FXML
+	private ComboBox<String> extractAllRedFactorCombo3;
+
+	@FXML
+	private ComboBox<Integer> extractAllRedFactorMinNumCombo3;
+
+	// 合計その他因子
+	@FXML
+	private TextField extractAllOtherFactorText1;
+
+	@FXML
+	private ComboBox<Integer> extractAllOtherFactorMinNumCombo1;
+
+	@FXML
+	private TextField extractAllOtherFactorText2;
+
+	@FXML
+	private ComboBox<Integer> extractAllOtherFactorMinNumCombo2;
+
+	@FXML
+	private TextField extractAllOtherFactorText3;
+
+	@FXML
+	private ComboBox<Integer> extractAllOtherFactorMinNumCombo3;
+
+	// 全体除外因子
+	@FXML
+	private TextArea extractAllExcludeFactorTextArea;
+
+	// 代表部
+	//代表青因子
+	@FXML
+	private ComboBox<String> extractRepresentBlueFactorCombo1;
+
+	@FXML
+	private ComboBox<Integer> extractRepresentBlueFactorMinNumCombo1;
+
+	@FXML
+	private ComboBox<String> extractRepresentBlueFactorCombo2;
+
+	@FXML
+	private ComboBox<Integer> extractRepresentBlueFactorMinNumCombo2;
+
+	@FXML
+	private ComboBox<String> extractRepresentBlueFactorCombo3;
+
+	@FXML
+	private ComboBox<Integer> extractRepresentBlueFactorMinNumCombo3;
+
+	// 代表赤因子
+	@FXML
+	private ComboBox<String> extractRepresentRedFactorCombo1;
+
+	@FXML
+	private ComboBox<Integer> extractRepresentRedFactorMinNumCombo1;
+
+	@FXML
+	private ComboBox<String> extractRepresentRedFactorCombo2;
+
+	@FXML
+	private ComboBox<Integer> extractRepresentRedFactorMinNumCombo2;
+
+	@FXML
+	private ComboBox<String> extractRepresentRedFactorCombo3;
+
+	@FXML
+	private ComboBox<Integer> extractRepresentRedFactorMinNumCombo3;
+
+	// 代表その他因子
+	@FXML
+	private TextField extractRepresentOtherFactorText1;
+
+	@FXML
+	private ComboBox<Integer> extractRepresentOtherFactorMinNumCombo1;
+
+	@FXML
+	private TextField extractRepresentOtherFactorText2;
+
+	@FXML
+	private ComboBox<Integer> extractRepresentOtherFactorMinNumCombo2;
+
+	@FXML
+	private TextField extractRepresentOtherFactorText3;
+
+	@FXML
+	private ComboBox<Integer> extractRepresentOtherFactorMinNumCombo3;
+
+	// 代表除外因子
+	@FXML
+	private TextArea extractRepresentExcludeFactorTextArea;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		//検索部
 		ObservableList<String> searchBlueFactors = FXCollections.observableArrayList("スピード", "パワー", "スタミナ", "根性", "賢さ");
 		ObservableList<String> searchRedFactors = FXCollections.observableArrayList("短距離", "マイル", "中距離", "長距離", "芝",
 				"ダート");
@@ -67,9 +195,46 @@ public class UmaFriendSearchController implements Initializable {
 		searchRedFactorCombo.setItems(searchRedFactors);
 		searchRedFactorCombo.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		nextNumText.setText("0");
-		nextNumText.setMinWidth(0);
 		nextNumText.setAlignment(Pos.CENTER_RIGHT);
-
+		//抽出部
+		// 合計青
+		extractAllBlueFactorCombo1.setItems(searchBlueFactors);
+		extractAllBlueFactorCombo2.setItems(searchBlueFactors);
+		extractAllBlueFactorCombo3.setItems(searchBlueFactors);
+		ObservableList<Integer> allFactorMinNumItems = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+		extractAllBlueFactorMinNumCombo1.setItems(allFactorMinNumItems);
+		extractAllBlueFactorMinNumCombo2.setItems(allFactorMinNumItems);
+		extractAllBlueFactorMinNumCombo3.setItems(allFactorMinNumItems);
+		// 合計赤
+		extractAllRedFactorCombo1.setItems(searchRedFactors);
+		extractAllRedFactorCombo2.setItems(searchRedFactors);
+		extractAllRedFactorCombo3.setItems(searchRedFactors);
+		extractAllRedFactorMinNumCombo1.setItems(allFactorMinNumItems);
+		extractAllRedFactorMinNumCombo2.setItems(allFactorMinNumItems);
+		extractAllRedFactorMinNumCombo3.setItems(allFactorMinNumItems);
+		// 合計その他
+		extractAllOtherFactorMinNumCombo1.setItems(allFactorMinNumItems);
+		extractAllOtherFactorMinNumCombo2.setItems(allFactorMinNumItems);
+		extractAllOtherFactorMinNumCombo3.setItems(allFactorMinNumItems);
+		// 代表青
+		extractRepresentBlueFactorCombo1.setItems(searchBlueFactors);
+		extractRepresentBlueFactorCombo2.setItems(searchBlueFactors);
+		extractRepresentBlueFactorCombo3.setItems(searchBlueFactors);
+		ObservableList<Integer> representFactorMinNumItems = FXCollections.observableArrayList(1, 2, 3);
+		extractRepresentBlueFactorMinNumCombo1.setItems(representFactorMinNumItems);
+		extractRepresentBlueFactorMinNumCombo2.setItems(representFactorMinNumItems);
+		extractRepresentBlueFactorMinNumCombo3.setItems(representFactorMinNumItems);
+		// 合計赤
+		extractRepresentRedFactorCombo1.setItems(searchRedFactors);
+		extractRepresentRedFactorCombo2.setItems(searchRedFactors);
+		extractRepresentRedFactorCombo3.setItems(searchRedFactors);
+		extractRepresentRedFactorMinNumCombo1.setItems(representFactorMinNumItems);
+		extractRepresentRedFactorMinNumCombo2.setItems(representFactorMinNumItems);
+		extractRepresentRedFactorMinNumCombo3.setItems(representFactorMinNumItems);
+		// 合計その他
+		extractRepresentOtherFactorMinNumCombo1.setItems(representFactorMinNumItems);
+		extractRepresentOtherFactorMinNumCombo2.setItems(representFactorMinNumItems);
+		extractRepresentOtherFactorMinNumCombo3.setItems(representFactorMinNumItems);
 	}
 
 	@FXML
