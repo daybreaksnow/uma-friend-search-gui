@@ -69,6 +69,9 @@ public class UmaFriendSearchController implements Initializable {
 	@FXML
 	private TextArea searchUmaResultTextArea;
 
+	@FXML
+	private Button loadUmaResultButton;
+
 	//抽出部
 	// 合計部
 	//合計青因子
@@ -410,16 +413,26 @@ public class UmaFriendSearchController implements Initializable {
 		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		File inputFile = fileChooser.showOpenDialog(null);
 		if (inputFile != null) {
+			String html;
 			try {
-				String html = Files.readString(inputFile.toPath());
-				searchUmaResultTextArea.setText(html);
+				html = Files.readString(inputFile.toPath());
 			} catch (IOException e) {
 				e.printStackTrace();
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setHeaderText("読み込みエラー発生");
 				alert.setContentText(getStackTrace(e));
 				alert.showAndWait();
+				return;
 			}
+			// テキスト設定が重いので、一旦ボタンの文字を変えておいて、別スレッドでテキストエリアを更新
+			loadUmaResultButton.setText("読込中");
+			loadUmaResultButton.setDisable(true);
+			Platform.runLater(
+					() -> {
+						searchUmaResultTextArea.setText(html);
+						loadUmaResultButton.setText("読込");
+						loadUmaResultButton.setDisable(false);
+					});
 		}
 	}
 
