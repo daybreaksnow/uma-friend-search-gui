@@ -69,8 +69,12 @@
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</TextArea>
-					<Button fx:id="saveUmaResultButton" onAction="#saveResult"
-						text="保存" minWidth="60" maxWidth="60" />
+					<VBox>
+						<Button fx:id="loadUmaResultButton" onAction="#loadResult"
+							text="読込" minWidth="60" maxWidth="60" />
+						<Button fx:id="saveUmaResultButton" onAction="#saveResult"
+							text="保存" minWidth="60" maxWidth="60" />
+					</VBox>
 				</children>
 			</HBox>
 			<!-- 抽出部 -->

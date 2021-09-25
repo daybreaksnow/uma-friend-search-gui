@@ -430,6 +430,26 @@ public class UmaFriendSearchController implements Initializable {
 	}
 
 	@FXML
+	public void loadResult(ActionEvent event) {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("テキストファイル", "*.txt"));
+		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+		File inputFile = fileChooser.showOpenDialog(null);
+		if (inputFile != null) {
+			try {
+				String html = Files.readString(inputFile.toPath());
+				searchUmaResultTextArea.setText(html);
+			} catch (IOException e) {
+				e.printStackTrace();
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setHeaderText("読み込みエラー発生");
+				alert.setContentText(getStackTrace(e));
+				alert.showAndWait();
+			}
+		}
+	}
+
+	@FXML
 	public void extract(ActionEvent event) {
 		String html = getTextValue(searchUmaResultTextArea.getText());
 		if (html == null) {
