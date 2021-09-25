@@ -289,30 +289,36 @@ public class UmaFriendSearchController implements Initializable {
 		extractRepresentOtherFactorMinNumCombo2.setItems(representFactorMinNumItems);
 		extractRepresentOtherFactorMinNumCombo3.setItems(representFactorMinNumItems);
 		// 抽出結果
+		// トレーナーIDや因子内容をコピー可能にするため、編集可能に
+		resultTable.setEditable(true);
 		TableColumn<ExtractResult, String> col;
 		col = new TableColumn<ExtractResult, String>("トレーナーID");
 		col.setMinWidth(100);
 		col.setMaxWidth(100);
 		col.setCellValueFactory(new PropertyValueFactory<ExtractResult, String>("trainerId"));
-
-		// トレーナーIDをコピー可能にするため、編集可能に
-		resultTable.setEditable(true);
-		col.setCellFactory(new Callback<TableColumn<ExtractResult, String>, TableCell<ExtractResult, String>>() {
-			@Override
-			public TableCell<ExtractResult, String> call(TableColumn<ExtractResult, String> arg0) {
-				return new TextFieldTableCell<ExtractResult, String>(new DefaultStringConverter());
-			}
-		});
-
+		col.setCellFactory(new TextFieldCellCallback());
 		resultTable.getColumns().add(col);
+
 		col = new TableColumn<ExtractResult, String>("合計因子");
 		col.setMinWidth(300);
 		col.setCellValueFactory(new PropertyValueFactory<ExtractResult, String>("allFactors"));
+		col.setCellFactory(new TextFieldCellCallback());
 		resultTable.getColumns().add(col);
+
 		col = new TableColumn<ExtractResult, String>("代表因子");
 		col.setMinWidth(300);
 		col.setCellValueFactory(new PropertyValueFactory<ExtractResult, String>("representFactors"));
+		col.setCellFactory(new TextFieldCellCallback());
 		resultTable.getColumns().add(col);
+	}
+
+	/** テーブルセルを編集可能にするためのクラス */
+	private final class TextFieldCellCallback
+			implements Callback<TableColumn<ExtractResult, String>, TableCell<ExtractResult, String>> {
+		@Override
+		public TableCell<ExtractResult, String> call(TableColumn<ExtractResult, String> arg0) {
+			return new TextFieldTableCell<ExtractResult, String>(new DefaultStringConverter());
+		}
 	}
 
 	@FXML
