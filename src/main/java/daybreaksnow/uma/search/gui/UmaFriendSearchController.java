@@ -1,7 +1,14 @@
 package daybreaksnow.uma.search.gui;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executor;
@@ -23,6 +30,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 
 /**
  * 
@@ -105,6 +113,38 @@ public class UmaFriendSearchController implements Initializable {
 		searchUmaResultTextArea.setDisable(true);
 		Executor executor = Executors.newSingleThreadExecutor();
 		executor.execute(searchTask);
+	}
+
+	@FXML
+	public void saveResult(ActionEvent event) {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("テキストファイル", "*.txt"));
+		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+		File outputFile = fileChooser.showSaveDialog(null);
+		if (outputFile != null) {
+			String saveText = searchUmaResultTextArea.getText();
+			Path dest = outputFile.toPath();
+			try {
+				Files.write(dest, Arrays.asList(saveText));
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setHeaderText("書き込みに成功しました");
+				alert.showAndWait();
+			} catch (IOException e) {
+				e.printStackTrace();
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setHeaderText("書き込みエラー発生");
+				alert.setContentText(getStackTrace(e));
+				alert.showAndWait();
+			}
+		}
+	}
+
+	public static String getStackTrace(Throwable e) {
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+		e.printStackTrace(pw);
+		pw.flush();
+		return sw.toString();
 	}
 
 	public static String getTextValue(String text) {

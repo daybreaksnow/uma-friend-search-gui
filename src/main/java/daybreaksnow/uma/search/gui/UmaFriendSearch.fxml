@@ -64,7 +64,13 @@
 				</padding>
 				<children>
 					<Text text="HTML" />
-					<TextArea fx:id="searchUmaResultTextArea" maxHeight="55" />
+					<TextArea fx:id="searchUmaResultTextArea" maxHeight="55">
+						<HBox.margin>
+							<Insets top="0" right="10" bottom="0" />
+						</HBox.margin>
+					</TextArea>
+					<Button fx:id="saveUmaResultButton" onAction="#saveResult" text="保存"
+						minWidth="60" maxWidth="60" />
 				</children>
 			</HBox>
 		</children>
