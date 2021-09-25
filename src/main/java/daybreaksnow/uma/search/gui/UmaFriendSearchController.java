@@ -14,6 +14,9 @@ import java.util.ResourceBundle;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import daybreaksnow.uma.search.Factor;
+import daybreaksnow.uma.search.FriendInfo;
+import daybreaksnow.uma.search.UmaFriendExtractor;
 import daybreaksnow.uma.search.UmaFriendListScraping;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -29,8 +32,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 
 /**
@@ -184,6 +190,81 @@ public class UmaFriendSearchController implements Initializable {
 	@FXML
 	private TextArea extractRepresentExcludeFactorTextArea;
 
+	/**
+	 * 抽出結果モデル
+	 */
+	public static class ExtractResult {
+		private String trainerId;
+		private String allFactors;
+		private String representFactors;
+
+		public ExtractResult(String trainerId, String allFactors, String representFactors) {
+			this.trainerId = trainerId;
+			this.allFactors = allFactors;
+			this.representFactors = representFactors;
+		}
+
+		public String getTrainerId() {
+			return trainerId;
+		}
+
+		public String getAllFactors() {
+			return allFactors;
+		}
+
+		public String getRepresentFactors() {
+			return representFactors;
+		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((allFactors == null) ? 0 : allFactors.hashCode());
+			result = prime * result + ((representFactors == null) ? 0 : representFactors.hashCode());
+			result = prime * result + ((trainerId == null) ? 0 : trainerId.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			ExtractResult other = (ExtractResult) obj;
+			if (allFactors == null) {
+				if (other.allFactors != null)
+					return false;
+			} else if (!allFactors.equals(other.allFactors))
+				return false;
+			if (representFactors == null) {
+				if (other.representFactors != null)
+					return false;
+			} else if (!representFactors.equals(other.representFactors))
+				return false;
+			if (trainerId == null) {
+				if (other.trainerId != null)
+					return false;
+			} else if (!trainerId.equals(other.trainerId))
+				return false;
+			return true;
+		}
+
+		@Override
+		public String toString() {
+			return "ExtractResult [trainerId=" + trainerId + ", allFactors=" + allFactors + ", representFactors="
+					+ representFactors + "]";
+		}
+
+	}
+
+	// 抽出結果
+	@FXML
+	private TableView<ExtractResult> resultTable;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		//検索部
@@ -235,6 +316,21 @@ public class UmaFriendSearchController implements Initializable {
 		extractRepresentOtherFactorMinNumCombo1.setItems(representFactorMinNumItems);
 		extractRepresentOtherFactorMinNumCombo2.setItems(representFactorMinNumItems);
 		extractRepresentOtherFactorMinNumCombo3.setItems(representFactorMinNumItems);
+		// 抽出結果
+		TableColumn<ExtractResult, String> col;
+		col = new TableColumn<ExtractResult, String>("トレーナーID");
+		col.setMinWidth(100);
+		col.setMaxWidth(100);
+		col.setCellValueFactory(new PropertyValueFactory<ExtractResult, String>("trainerId"));
+		resultTable.getColumns().add(col);
+		col = new TableColumn<ExtractResult, String>("合計因子");
+		col.setMinWidth(300);
+		col.setCellValueFactory(new PropertyValueFactory<ExtractResult, String>("allFactors"));
+		resultTable.getColumns().add(col);
+		col = new TableColumn<ExtractResult, String>("代表因子");
+		col.setMinWidth(300);
+		col.setCellValueFactory(new PropertyValueFactory<ExtractResult, String>("representFactors"));
+		resultTable.getColumns().add(col);
 	}
 
 	@FXML
@@ -262,14 +358,21 @@ public class UmaFriendSearchController implements Initializable {
 		Task<Void> searchTask = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
-				final String result = scraping.scraping(umaName, factors, nextNum);
-				Platform.runLater(
-						() -> {
-							searchUmaResultTextArea.setText(result);
-							searchUmaResultTextArea.setDisable(false);
-							searchUmaButton.setDisable(false);
-							searchUmaButton.setText("検索");
-						});
+				try {
+					final String result = scraping.scraping(umaName, factors, nextNum);
+					Platform.runLater(
+							() -> {
+								searchUmaResultTextArea.setText(result);
+								searchUmaResultTextArea.setDisable(false);
+								searchUmaButton.setDisable(false);
+								searchUmaButton.setText("検索");
+							});
+				} catch (Exception e) {
+					e.printStackTrace();
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setHeaderText("検索エラー発生");
+					alert.setContentText(getStackTrace(e));
+				}
 				return null;
 			}
 		};
@@ -301,6 +404,107 @@ public class UmaFriendSearchController implements Initializable {
 				alert.setContentText(getStackTrace(e));
 				alert.showAndWait();
 			}
+		}
+	}
+
+	@FXML
+	public void extract(ActionEvent event) {
+		String html = getTextValue(searchUmaResultTextArea.getText());
+		if (html == null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("抽出元HTMLが空です");
+			alert.showAndWait();
+			return;
+		}
+		UmaFriendExtractor extractor = new UmaFriendExtractor();
+		Collection<Factor> representNeedFactors = getRepresentNeedFactors();
+		Collection<Factor> allNeedFactors = getAllNeedFactors();
+		Collection<String> representExcludeFactors = getRepresentExcludeFactors();
+		Collection<String> allExcludeFactors = getAllExcludeFactors();
+		Collection<FriendInfo> friendInfos = extractor.extract(html, representNeedFactors, allNeedFactors,
+				representExcludeFactors, allExcludeFactors);
+		if (friendInfos.isEmpty()) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setHeaderText("抽出結果が空です");
+			alert.showAndWait();
+			return;
+		}
+		resultTable.getItems().clear();
+		for (FriendInfo friendInfo : friendInfos) {
+			resultTable.getItems().add(new ExtractResult(friendInfo.getTrainderId(),
+					friendInfo.getAllFactors().toString(), friendInfo.getRepresentFactors().toString()));
+		}
+	}
+
+	private Collection<Factor> getRepresentNeedFactors() {
+		Collection<Factor> factors = new ArrayList<>();
+		addFactor(factors, extractRepresentBlueFactorCombo1, extractRepresentBlueFactorMinNumCombo1);
+		addFactor(factors, extractRepresentBlueFactorCombo2, extractRepresentBlueFactorMinNumCombo2);
+		addFactor(factors, extractRepresentBlueFactorCombo3, extractRepresentBlueFactorMinNumCombo3);
+		addFactor(factors, extractRepresentRedFactorCombo1, extractRepresentRedFactorMinNumCombo1);
+		addFactor(factors, extractRepresentRedFactorCombo2, extractRepresentRedFactorMinNumCombo2);
+		addFactor(factors, extractRepresentRedFactorCombo3, extractRepresentRedFactorMinNumCombo3);
+		addFactor(factors, extractRepresentOtherFactorText1, extractRepresentOtherFactorMinNumCombo1);
+		addFactor(factors, extractRepresentOtherFactorText2, extractRepresentOtherFactorMinNumCombo2);
+		addFactor(factors, extractRepresentOtherFactorText3, extractRepresentOtherFactorMinNumCombo3);
+		return factors;
+	}
+
+	private Collection<Factor> getAllNeedFactors() {
+		Collection<Factor> factors = new ArrayList<>();
+		addFactor(factors, extractAllBlueFactorCombo1, extractAllBlueFactorMinNumCombo1);
+		addFactor(factors, extractAllBlueFactorCombo2, extractAllBlueFactorMinNumCombo2);
+		addFactor(factors, extractAllBlueFactorCombo3, extractAllBlueFactorMinNumCombo3);
+		addFactor(factors, extractAllRedFactorCombo1, extractAllRedFactorMinNumCombo1);
+		addFactor(factors, extractAllRedFactorCombo2, extractAllRedFactorMinNumCombo2);
+		addFactor(factors, extractAllRedFactorCombo3, extractAllRedFactorMinNumCombo3);
+		addFactor(factors, extractAllOtherFactorText1, extractAllOtherFactorMinNumCombo1);
+		addFactor(factors, extractAllOtherFactorText2, extractAllOtherFactorMinNumCombo2);
+		addFactor(factors, extractAllOtherFactorText3, extractAllOtherFactorMinNumCombo3);
+		return factors;
+	}
+
+	private Collection<String> getRepresentExcludeFactors() {
+		return getExludeFactors(extractRepresentExcludeFactorTextArea);
+	}
+
+	private Collection<String> getAllExcludeFactors() {
+		return getExludeFactors(extractAllExcludeFactorTextArea);
+	}
+
+	private Collection<String> getExludeFactors(TextArea textArea) {
+		Collection<String> factors = new ArrayList<>();
+		String allText = textArea.getText();
+		String[] split = allText.split("\n");
+		for (String factorText : split) {
+			if (getTextValue(factorText) != null) {
+				factors.add(getTextValue(factorText));
+			}
+		}
+		return factors;
+	}
+
+	private void addFactor(Collection<Factor> factors, ComboBox<String> factorNameCombo,
+			ComboBox<Integer> minNumCombo) {
+		if (factorNameCombo.getValue() != null) {
+			String factorName = factorNameCombo.getValue();
+			Integer minNum = minNumCombo.getValue();
+			if (minNum == null) {
+				minNum = 1;
+			}
+			factors.add(new Factor(factorName, minNum));
+		}
+	}
+
+	private void addFactor(Collection<Factor> factors, TextField factorNameText,
+			ComboBox<Integer> minNumCombo) {
+		if (getTextValue(factorNameText.getText()) != null) {
+			String factorName = getTextValue(factorNameText.getText());
+			Integer minNum = minNumCombo.getValue();
+			if (minNum == null) {
+				minNum = 1;
+			}
+			factors.add(new Factor(factorName, minNum));
 		}
 	}
 

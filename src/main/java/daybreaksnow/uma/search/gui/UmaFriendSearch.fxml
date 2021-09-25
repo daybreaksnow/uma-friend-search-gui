@@ -69,8 +69,8 @@
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</TextArea>
-					<Button fx:id="saveUmaResultButton" onAction="#saveResult" text="保存"
-						minWidth="60" maxWidth="60" />
+					<Button fx:id="saveUmaResultButton" onAction="#saveResult"
+						text="保存" minWidth="60" maxWidth="60" />
 				</children>
 			</HBox>
 			<!-- 抽出部 -->
@@ -95,37 +95,43 @@
 				</padding>
 				<children>
 					<Text text="青因子1" />
-					<ComboBox fx:id="extractAllBlueFactorCombo1" minWidth="80" maxWidth="80">
+					<ComboBox fx:id="extractAllBlueFactorCombo1" minWidth="80"
+						maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractAllBlueFactorMinNumCombo1" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractAllBlueFactorMinNumCombo1"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="青因子2" />
-					<ComboBox fx:id="extractAllBlueFactorCombo2" minWidth="80" maxWidth="80">
+					<ComboBox fx:id="extractAllBlueFactorCombo2" minWidth="80"
+						maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractAllBlueFactorMinNumCombo2" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractAllBlueFactorMinNumCombo2"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="青因子3" />
-					<ComboBox fx:id="extractAllBlueFactorCombo3" minWidth="80" maxWidth="80">
+					<ComboBox fx:id="extractAllBlueFactorCombo3" minWidth="80"
+						maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractAllBlueFactorMinNumCombo3" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractAllBlueFactorMinNumCombo3"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
@@ -139,37 +145,43 @@
 				</padding>
 				<children>
 					<Text text="赤因子1" />
-					<ComboBox fx:id="extractAllRedFactorCombo1" minWidth="80" maxWidth="80">
+					<ComboBox fx:id="extractAllRedFactorCombo1" minWidth="80"
+						maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractAllRedFactorMinNumCombo1" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractAllRedFactorMinNumCombo1"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="赤因子2" />
-					<ComboBox fx:id="extractAllRedFactorCombo2" minWidth="80" maxWidth="80">
+					<ComboBox fx:id="extractAllRedFactorCombo2" minWidth="80"
+						maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractAllRedFactorMinNumCombo2" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractAllRedFactorMinNumCombo2"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="赤因子3" />
-					<ComboBox fx:id="extractAllRedFactorCombo3" minWidth="80" maxWidth="80">
+					<ComboBox fx:id="extractAllRedFactorCombo3" minWidth="80"
+						maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractAllRedFactorMinNumCombo3" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractAllRedFactorMinNumCombo3"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
@@ -183,43 +195,49 @@
 				</padding>
 				<children>
 					<Text text="その他因子1" />
-					<TextField fx:id="extractAllOtherFactorText1" minWidth="80" maxWidth="80">
+					<TextField fx:id="extractAllOtherFactorText1"
+						minWidth="80" maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</TextField>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractAllOtherFactorMinNumCombo1" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractAllOtherFactorMinNumCombo1"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="その他因子2" />
-					<TextField fx:id="extractAllOtherFactorText2" minWidth="80" maxWidth="80">
+					<TextField fx:id="extractAllOtherFactorText2"
+						minWidth="80" maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</TextField>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractAllOtherFactorMinNumCombo2" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractAllOtherFactorMinNumCombo2"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="その他因子3" />
-					<TextField fx:id="extractAllOtherFactorText3" minWidth="80" maxWidth="80">
+					<TextField fx:id="extractAllOtherFactorText3"
+						minWidth="80" maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</TextField>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractAllOtherFactorMinNumCombo3" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractAllOtherFactorMinNumCombo3"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 				</children>
-			</HBox>			
+			</HBox>
 			<!-- 合計除外因子 -->
 			<HBox>
 				<padding>
@@ -227,13 +245,14 @@
 				</padding>
 				<children>
 					<Text text="除外因子(改行区切り)" />
-					<TextArea fx:id="extractAllExcludeFactorTextArea" maxHeight="60">
+					<TextArea fx:id="extractAllExcludeFactorTextArea"
+						maxHeight="60">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</TextArea>
 				</children>
-			</HBox>			
+			</HBox>
 			<!-- 代表部 -->
 			<HBox>
 				<padding>
@@ -250,37 +269,43 @@
 				</padding>
 				<children>
 					<Text text="青因子1" />
-					<ComboBox fx:id="extractRepresentBlueFactorCombo1" minWidth="80" maxWidth="80">
+					<ComboBox fx:id="extractRepresentBlueFactorCombo1"
+						minWidth="80" maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentBlueFactorMinNumCombo1" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractRepresentBlueFactorMinNumCombo1"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="青因子2" />
-					<ComboBox fx:id="extractRepresentBlueFactorCombo2" minWidth="80" maxWidth="80">
+					<ComboBox fx:id="extractRepresentBlueFactorCombo2"
+						minWidth="80" maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentBlueFactorMinNumCombo2" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractRepresentBlueFactorMinNumCombo2"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="青因子3" />
-					<ComboBox fx:id="extractRepresentBlueFactorCombo3" minWidth="80" maxWidth="80">
+					<ComboBox fx:id="extractRepresentBlueFactorCombo3"
+						minWidth="80" maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentBlueFactorMinNumCombo3" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractRepresentBlueFactorMinNumCombo3"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
@@ -294,37 +319,43 @@
 				</padding>
 				<children>
 					<Text text="赤因子1" />
-					<ComboBox fx:id="extractRepresentRedFactorCombo1" minWidth="80" maxWidth="80">
+					<ComboBox fx:id="extractRepresentRedFactorCombo1"
+						minWidth="80" maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentRedFactorMinNumCombo1" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractRepresentRedFactorMinNumCombo1"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="赤因子2" />
-					<ComboBox fx:id="extractRepresentRedFactorCombo2" minWidth="80" maxWidth="80">
+					<ComboBox fx:id="extractRepresentRedFactorCombo2"
+						minWidth="80" maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentRedFactorMinNumCombo2" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractRepresentRedFactorMinNumCombo2"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="赤因子3" />
-					<ComboBox fx:id="extractRepresentRedFactorCombo3" minWidth="80" maxWidth="80">
+					<ComboBox fx:id="extractRepresentRedFactorCombo3"
+						minWidth="80" maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentRedFactorMinNumCombo3" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractRepresentRedFactorMinNumCombo3"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
@@ -338,43 +369,49 @@
 				</padding>
 				<children>
 					<Text text="その他因子1" />
-					<TextField fx:id="extractRepresentOtherFactorText1" minWidth="80" maxWidth="80">
+					<TextField fx:id="extractRepresentOtherFactorText1"
+						minWidth="80" maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</TextField>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentOtherFactorMinNumCombo1" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractRepresentOtherFactorMinNumCombo1"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="その他因子2" />
-					<TextField fx:id="extractRepresentOtherFactorText2" minWidth="80" maxWidth="80">
+					<TextField fx:id="extractRepresentOtherFactorText2"
+						minWidth="80" maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</TextField>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentOtherFactorMinNumCombo2" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractRepresentOtherFactorMinNumCombo2"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="その他因子3" />
-					<TextField fx:id="extractRepresentOtherFactorText3" minWidth="80" maxWidth="80">
+					<TextField fx:id="extractRepresentOtherFactorText3"
+						minWidth="80" maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</TextField>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentOtherFactorMinNumCombo3" minWidth="50" maxWidth="50">
+					<ComboBox fx:id="extractRepresentOtherFactorMinNumCombo3"
+						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 				</children>
-			</HBox>			
+			</HBox>
 			<!-- 代表除外因子 -->
 			<HBox>
 				<padding>
@@ -382,13 +419,44 @@
 				</padding>
 				<children>
 					<Text text="除外因子(改行区切り)" />
-					<TextArea fx:id="extractRepresentExcludeFactorTextArea" maxHeight="60">
+					<TextArea fx:id="extractRepresentExcludeFactorTextArea"
+						maxHeight="60">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</TextArea>
 				</children>
-			</HBox>			
+			</HBox>
+			<!-- 抽出ボタン部 -->
+			<HBox>
+				<padding>
+					<Insets top="10" right="10" bottom="10" left="10" />
+				</padding>
+				<children>
+					<Button fx:id="extractUmaButton" onAction="#extract"
+						text="抽出" minWidth="60" maxWidth="60" />
+				</children>
+			</HBox>
+			<!-- 抽出結果部 -->
+			<HBox>
+				<padding>
+					<Insets top="10" right="10" bottom="10" left="10" />
+				</padding>
+				<children>
+					<Text text="抽出結果" />
+				</children>
+			</HBox>
+			<!-- 代表青因子 -->
+			<HBox>
+				<padding>
+					<Insets top="10" right="10" bottom="10" left="20" />
+				</padding>
+				<children>
+					<TableView fx:id="resultTable" minWidth="700">
+					</TableView>
+				</children>
+			</HBox>
+
 		</children>
 	</VBox>
 </ScrollPane>
