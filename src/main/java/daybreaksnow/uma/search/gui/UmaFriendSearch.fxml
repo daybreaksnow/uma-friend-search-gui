@@ -266,99 +266,35 @@
 					<Text text="代表ウマ娘条件" />
 				</children>
 			</HBox>
-			<!-- 代表青因子 -->
+			<!-- 代表青、赤因子 -->
 			<HBox>
 				<padding>
 					<Insets top="10" right="10" bottom="10" left="20" />
 				</padding>
 				<children>
-					<Text text="青因子1" />
-					<ComboBox fx:id="extractRepresentBlueFactorCombo1"
+					<Text text="青因子" />
+					<ComboBox fx:id="extractRepresentBlueFactorCombo"
 						minWidth="80" maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentBlueFactorMinNumCombo1"
+					<ComboBox fx:id="extractRepresentBlueFactorMinNumCombo"
 						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
-					<Text text="青因子2" />
-					<ComboBox fx:id="extractRepresentBlueFactorCombo2"
+					<Text text="赤因子" />
+					<ComboBox fx:id="extractRepresentRedFactorCombo"
 						minWidth="80" maxWidth="80">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />
 						</HBox.margin>
 					</ComboBox>
 					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentBlueFactorMinNumCombo2"
-						minWidth="50" maxWidth="50">
-						<HBox.margin>
-							<Insets top="0" right="10" bottom="0" />
-						</HBox.margin>
-					</ComboBox>
-					<Text text="青因子3" />
-					<ComboBox fx:id="extractRepresentBlueFactorCombo3"
-						minWidth="80" maxWidth="80">
-						<HBox.margin>
-							<Insets top="0" right="10" bottom="0" />
-						</HBox.margin>
-					</ComboBox>
-					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentBlueFactorMinNumCombo3"
-						minWidth="50" maxWidth="50">
-						<HBox.margin>
-							<Insets top="0" right="10" bottom="0" />
-						</HBox.margin>
-					</ComboBox>
-				</children>
-			</HBox>
-			<!-- 代表赤因子 -->
-			<HBox>
-				<padding>
-					<Insets top="10" right="10" bottom="10" left="20" />
-				</padding>
-				<children>
-					<Text text="赤因子1" />
-					<ComboBox fx:id="extractRepresentRedFactorCombo1"
-						minWidth="80" maxWidth="80">
-						<HBox.margin>
-							<Insets top="0" right="10" bottom="0" />
-						</HBox.margin>
-					</ComboBox>
-					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentRedFactorMinNumCombo1"
-						minWidth="50" maxWidth="50">
-						<HBox.margin>
-							<Insets top="0" right="10" bottom="0" />
-						</HBox.margin>
-					</ComboBox>
-					<Text text="赤因子2" />
-					<ComboBox fx:id="extractRepresentRedFactorCombo2"
-						minWidth="80" maxWidth="80">
-						<HBox.margin>
-							<Insets top="0" right="10" bottom="0" />
-						</HBox.margin>
-					</ComboBox>
-					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentRedFactorMinNumCombo2"
-						minWidth="50" maxWidth="50">
-						<HBox.margin>
-							<Insets top="0" right="10" bottom="0" />
-						</HBox.margin>
-					</ComboBox>
-					<Text text="赤因子3" />
-					<ComboBox fx:id="extractRepresentRedFactorCombo3"
-						minWidth="80" maxWidth="80">
-						<HBox.margin>
-							<Insets top="0" right="10" bottom="0" />
-						</HBox.margin>
-					</ComboBox>
-					<Text text="最低数" />
-					<ComboBox fx:id="extractRepresentRedFactorMinNumCombo3"
+					<ComboBox fx:id="extractRepresentRedFactorMinNumCombo"
 						minWidth="50" maxWidth="50">
 						<HBox.margin>
 							<Insets top="0" right="10" bottom="0" />

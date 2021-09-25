@@ -135,41 +135,17 @@ public class UmaFriendSearchController implements Initializable {
 	// 代表部
 	//代表青因子
 	@FXML
-	private ComboBox<String> extractRepresentBlueFactorCombo1;
+	private ComboBox<String> extractRepresentBlueFactorCombo;
 
 	@FXML
-	private ComboBox<Integer> extractRepresentBlueFactorMinNumCombo1;
-
-	@FXML
-	private ComboBox<String> extractRepresentBlueFactorCombo2;
-
-	@FXML
-	private ComboBox<Integer> extractRepresentBlueFactorMinNumCombo2;
-
-	@FXML
-	private ComboBox<String> extractRepresentBlueFactorCombo3;
-
-	@FXML
-	private ComboBox<Integer> extractRepresentBlueFactorMinNumCombo3;
+	private ComboBox<Integer> extractRepresentBlueFactorMinNumCombo;
 
 	// 代表赤因子
 	@FXML
-	private ComboBox<String> extractRepresentRedFactorCombo1;
+	private ComboBox<String> extractRepresentRedFactorCombo;
 
 	@FXML
-	private ComboBox<Integer> extractRepresentRedFactorMinNumCombo1;
-
-	@FXML
-	private ComboBox<String> extractRepresentRedFactorCombo2;
-
-	@FXML
-	private ComboBox<Integer> extractRepresentRedFactorMinNumCombo2;
-
-	@FXML
-	private ComboBox<String> extractRepresentRedFactorCombo3;
-
-	@FXML
-	private ComboBox<Integer> extractRepresentRedFactorMinNumCombo3;
+	private ComboBox<Integer> extractRepresentRedFactorMinNumCombo;
 
 	// 代表その他因子
 	@FXML
@@ -302,20 +278,12 @@ public class UmaFriendSearchController implements Initializable {
 		extractAllOtherFactorMinNumCombo2.setItems(allFactorMinNumItems);
 		extractAllOtherFactorMinNumCombo3.setItems(allFactorMinNumItems);
 		// 代表青
-		extractRepresentBlueFactorCombo1.setItems(searchBlueFactors);
-		extractRepresentBlueFactorCombo2.setItems(searchBlueFactors);
-		extractRepresentBlueFactorCombo3.setItems(searchBlueFactors);
+		extractRepresentBlueFactorCombo.setItems(searchBlueFactors);
 		ObservableList<Integer> representFactorMinNumItems = FXCollections.observableArrayList(1, 2, 3);
-		extractRepresentBlueFactorMinNumCombo1.setItems(representFactorMinNumItems);
-		extractRepresentBlueFactorMinNumCombo2.setItems(representFactorMinNumItems);
-		extractRepresentBlueFactorMinNumCombo3.setItems(representFactorMinNumItems);
+		extractRepresentBlueFactorMinNumCombo.setItems(representFactorMinNumItems);
 		// 合計赤
-		extractRepresentRedFactorCombo1.setItems(searchRedFactors);
-		extractRepresentRedFactorCombo2.setItems(searchRedFactors);
-		extractRepresentRedFactorCombo3.setItems(searchRedFactors);
-		extractRepresentRedFactorMinNumCombo1.setItems(representFactorMinNumItems);
-		extractRepresentRedFactorMinNumCombo2.setItems(representFactorMinNumItems);
-		extractRepresentRedFactorMinNumCombo3.setItems(representFactorMinNumItems);
+		extractRepresentRedFactorCombo.setItems(searchRedFactors);
+		extractRepresentRedFactorMinNumCombo.setItems(representFactorMinNumItems);
 		// 合計その他
 		extractRepresentOtherFactorMinNumCombo1.setItems(representFactorMinNumItems);
 		extractRepresentOtherFactorMinNumCombo2.setItems(representFactorMinNumItems);
@@ -480,12 +448,8 @@ public class UmaFriendSearchController implements Initializable {
 
 	private Collection<Factor> getRepresentNeedFactors() {
 		Collection<Factor> factors = new ArrayList<>();
-		addFactor(factors, extractRepresentBlueFactorCombo1, extractRepresentBlueFactorMinNumCombo1);
-		addFactor(factors, extractRepresentBlueFactorCombo2, extractRepresentBlueFactorMinNumCombo2);
-		addFactor(factors, extractRepresentBlueFactorCombo3, extractRepresentBlueFactorMinNumCombo3);
-		addFactor(factors, extractRepresentRedFactorCombo1, extractRepresentRedFactorMinNumCombo1);
-		addFactor(factors, extractRepresentRedFactorCombo2, extractRepresentRedFactorMinNumCombo2);
-		addFactor(factors, extractRepresentRedFactorCombo3, extractRepresentRedFactorMinNumCombo3);
+		addFactor(factors, extractRepresentBlueFactorCombo, extractRepresentBlueFactorMinNumCombo);
+		addFactor(factors, extractRepresentRedFactorCombo, extractRepresentRedFactorMinNumCombo);
 		addFactor(factors, extractRepresentOtherFactorText1, extractRepresentOtherFactorMinNumCombo1);
 		addFactor(factors, extractRepresentOtherFactorText2, extractRepresentOtherFactorMinNumCombo2);
 		addFactor(factors, extractRepresentOtherFactorText3, extractRepresentOtherFactorMinNumCombo3);
