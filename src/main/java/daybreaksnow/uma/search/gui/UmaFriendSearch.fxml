@@ -55,7 +55,7 @@
 					</TextField>
 
 					<Button fx:id="searchUmaButton" onAction="#search" text="検索"
-						minWidth="50" maxWidth="50" />
+						minWidth="60" maxWidth="60" />
 				</children>
 			</HBox>
 			<HBox>
@@ -64,7 +64,7 @@
 				</padding>
 				<children>
 					<Text text="HTML" />
-					<TextArea fx:id="searchUmaResultTextArea" maxHeight="45" />
+					<TextArea fx:id="searchUmaResultTextArea" maxHeight="55" />
 				</children>
 			</HBox>
 		</children>

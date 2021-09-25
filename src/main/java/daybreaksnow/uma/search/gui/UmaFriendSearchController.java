@@ -4,10 +4,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import daybreaksnow.uma.search.UmaFriendListScraping;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -81,9 +85,26 @@ public class UmaFriendSearchController implements Initializable {
 			return;
 		}
 		UmaFriendListScraping scraping = new UmaFriendListScraping();
-		// TODO 重いので別スレッドで実行し、プログレスバーを出す
-		String result = scraping.scraping(umaName, factors, nextNum);
-		searchUmaResultTextArea.setText(result);
+		// 検索は重いので別スレッドで実行
+		Task<Void> searchTask = new Task<Void>() {
+			@Override
+			protected Void call() throws Exception {
+				final String result = scraping.scraping(umaName, factors, nextNum);
+				Platform.runLater(
+						() -> {
+							searchUmaResultTextArea.setText(result);
+							searchUmaResultTextArea.setDisable(false);
+							searchUmaButton.setDisable(false);
+							searchUmaButton.setText("検索");
+						});
+				return null;
+			}
+		};
+		searchUmaButton.setDisable(true);
+		searchUmaButton.setText("検索中");
+		searchUmaResultTextArea.setDisable(true);
+		Executor executor = Executors.newSingleThreadExecutor();
+		executor.execute(searchTask);
 	}
 
 	public static String getTextValue(String text) {
