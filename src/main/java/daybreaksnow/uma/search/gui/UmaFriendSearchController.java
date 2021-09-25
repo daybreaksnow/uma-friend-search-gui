@@ -373,10 +373,14 @@ public class UmaFriendSearchController implements Initializable {
 			@Override
 			protected Void call() throws Exception {
 				try {
+					log("start scraping");
 					final String result = scraping.scraping(umaName, factors, nextNum);
+					log("end scraping");
 					Platform.runLater(
 							() -> {
+								log("update TextArea  start");
 								searchUmaResultTextArea.setText(result);
+								log("update TextArea  end");
 								searchUmaResultTextArea.setDisable(false);
 								searchUmaButton.setDisable(false);
 								searchUmaButton.setText("検索");
@@ -395,6 +399,10 @@ public class UmaFriendSearchController implements Initializable {
 		searchUmaResultTextArea.setDisable(true);
 		Executor executor = Executors.newSingleThreadExecutor();
 		executor.execute(searchTask);
+	}
+
+	private void log(String message) {
+		System.out.println(message);
 	}
 
 	@FXML
