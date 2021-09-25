@@ -32,12 +32,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
+import javafx.util.converter.DefaultStringConverter;
 
 /**
  * 
@@ -322,6 +326,16 @@ public class UmaFriendSearchController implements Initializable {
 		col.setMinWidth(100);
 		col.setMaxWidth(100);
 		col.setCellValueFactory(new PropertyValueFactory<ExtractResult, String>("trainerId"));
+
+		// トレーナーIDをコピー可能にするため、編集可能に
+		resultTable.setEditable(true);
+		col.setCellFactory(new Callback<TableColumn<ExtractResult, String>, TableCell<ExtractResult, String>>() {
+			@Override
+			public TableCell<ExtractResult, String> call(TableColumn<ExtractResult, String> arg0) {
+				return new TextFieldTableCell<ExtractResult, String>(new DefaultStringConverter());
+			}
+		});
+
 		resultTable.getColumns().add(col);
 		col = new TableColumn<ExtractResult, String>("合計因子");
 		col.setMinWidth(300);
