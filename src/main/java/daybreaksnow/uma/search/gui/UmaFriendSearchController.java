@@ -362,12 +362,21 @@ public class UmaFriendSearchController implements Initializable {
 								searchUmaButton.setDisable(false);
 								searchUmaButton.setText("検索");
 							});
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					e.printStackTrace();
-					Alert alert = new Alert(AlertType.ERROR);
-					alert.setHeaderText("検索エラー発生");
-					alert.setContentText(getStackTrace(e));
+					Platform.runLater(
+							() -> {
+								Alert alert = new Alert(AlertType.ERROR);
+								alert.setHeaderText("検索エラー発生");
+								alert.setContentText(getStackTrace(e));
+								alert.showAndWait();
+
+								searchUmaResultTextArea.setDisable(false);
+								searchUmaButton.setDisable(false);
+								searchUmaButton.setText("検索");
+							});
 				}
+
 				return null;
 			}
 		};
