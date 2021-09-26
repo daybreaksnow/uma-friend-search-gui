@@ -3,6 +3,11 @@
 	<groupId>daybreaksnow</groupId>
 	<artifactId>uma-friend-search-gui</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.openjfx</groupId>
@@ -17,9 +22,9 @@
 		<dependency>
 			<groupId>daybreaksnow</groupId>
 			<artifactId>uma-friend-search</artifactId>
-		    <version>0.0.1</version>
-		    <scope>system</scope>
-		    <systemPath>${basedir}/lib/uma-friend-search.jar</systemPath>
+			<version>0.0.1</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/uma-friend-search.jar</systemPath>
 		</dependency>
 	</dependencies>
 	<build>
@@ -39,6 +44,52 @@
 				<configuration>
 					<mainClass>daybreaksnow.uma.search.gui.EntryPoint</mainClass>
 				</configuration>
+			</plugin>
+			<!-- systemスコープのjarも入れる -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/classes</outputDirectory>
+							<includeArtifactIds>uma-friend-search</includeArtifactIds>
+
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- 実行可能jarファイル用のプラグイン -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<finalName>uma-friend-search-gui</finalName>
+					<descriptorRefs>
+						<!-- 依存するリソースをすべてjarに同梱する -->
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>daybreaksnow.uma.search.gui.EntryPoint</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<!-- idタグは任意の文字列であれば何でもよい -->
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
